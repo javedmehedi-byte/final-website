@@ -1,11 +1,19 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 
-// Initialize Razorpay instance with your API keys
-export const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID || '',
-  key_secret: process.env.RAZORPAY_KEY_SECRET || '',
-});
+// Lazily initialize Razorpay to avoid build-time instantiation
+let _razorpay: Razorpay | null = null;
+function getRazorpay() {
+  if (_razorpay) return _razorpay;
+  const key_id = process.env.RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  if (!key_id || !key_secret) {
+    // Defer throwing until runtime where we can surface a sane error
+    throw new Error('Razorpay keys are not configured');
+  }
+  _razorpay = new Razorpay({ key_id, key_secret });
+  return _razorpay;
+}
 
 /**
  * Create a new payment order with Razorpay
@@ -16,7 +24,7 @@ export const razorpay = new Razorpay({
  */
 export async function createOrder(amount: number, receipt: string, notes: Record<string, any> = {}) {
   try {
-    const order = await razorpay.orders.create({
+  const order = await getRazorpay().orders.create({
       amount, // Amount in smallest currency unit (paise for INR)
       currency: 'INR',
       receipt,
@@ -57,7 +65,7 @@ export function verifyPayment(orderId: string, paymentId: string, signature: str
  */
 export async function getPaymentDetails(paymentId: string) {
   try {
-    const payment = await razorpay.payments.fetch(paymentId);
+    const payment = await getRazorpay().payments.fetch(paymentId);
     return payment;
   } catch (error: any) {
     console.error('Failed to fetch payment details:', error);
