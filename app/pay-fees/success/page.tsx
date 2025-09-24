@@ -1,58 +1,24 @@
-'use client';
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import Layout from '@/components/Layout';
+import paymentDB from '@/lib/payment-db';
 
-export default function PaymentSuccessPage() {
-  const searchParams = useSearchParams();
-  const paymentId = searchParams.get('id');
-  
-  const [paymentDetails, setPaymentDetails] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
-  useEffect(() => {
-    if (paymentId) {
-      fetchPaymentDetails(paymentId);
-    } else {
-      setLoading(false);
-      setError('Payment information not found');
-    }
-  }, [paymentId]);
-  
-  const fetchPaymentDetails = async (id: string) => {
-    try {
-      const response = await fetch(`/api/pay-fees/details?id=${id}`);
-      const data = await response.json();
-      
-      if (!data.ok) {
-        throw new Error(data.error || 'Failed to fetch payment details');
-      }
-      
-      setPaymentDetails(data.payment);
-    } catch (err: any) {
-      console.error('Error fetching payment details:', err);
-      setError(err.message || 'Failed to load payment information');
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-  if (loading) {
-    return (
-      <Layout>
-        <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading payment information...</p>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-  
+type PageProps = {
+  searchParams: { id?: string };
+};
+
+export default function PaymentSuccessPage({ searchParams }: PageProps) {
+  const paymentId = searchParams?.id;
+
+  const paymentDetails = paymentId ? paymentDB.getPaymentById(paymentId) : null;
+  const error = !paymentId
+    ? 'Payment information not found'
+    : !paymentDetails
+    ? 'Could not retrieve payment details. Please contact support.'
+    : null;
+
   if (error || !paymentDetails) {
     return (
       <Layout>
@@ -64,7 +30,7 @@ export default function PaymentSuccessPage() {
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-gray-800 mb-3">Payment Information Unavailable</h1>
-            <p className="text-gray-600 mb-6">{error || 'Could not retrieve payment details. Please contact support.'}</p>
+            <p className="text-gray-600 mb-6">{error}</p>
             <div className="mt-6">
               <Link href="/pay-fees" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                 Return to Payment Page
@@ -75,7 +41,7 @@ export default function PaymentSuccessPage() {
       </Layout>
     );
   }
-  
+
   return (
     <Layout>
       <section className="py-16">
@@ -90,10 +56,10 @@ export default function PaymentSuccessPage() {
               <h1 className="text-3xl font-bold text-gray-800">Payment Successful!</h1>
               <p className="text-gray-600 mt-2">Your payment has been processed successfully.</p>
             </div>
-            
+
             <div className="bg-gray-50 p-6 rounded-xl mb-6">
               <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-500">Payment ID</p>
@@ -106,11 +72,13 @@ export default function PaymentSuccessPage() {
                 <div>
                   <p className="text-sm text-gray-500">Status</p>
                   <p className="font-medium">
-                    <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
-                      paymentDetails.status === 'captured' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <span
+                      className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
+                        paymentDetails.status === 'captured'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}
+                    >
                       {paymentDetails.status === 'captured' ? 'PAID' : 'AUTHORIZED'}
                     </span>
                   </p>
@@ -118,7 +86,7 @@ export default function PaymentSuccessPage() {
                 <div>
                   <p className="text-sm text-gray-500">Date</p>
                   <p className="font-medium">
-                    {paymentDetails.paymentDate 
+                    {paymentDetails.paymentDate
                       ? new Date(paymentDetails.paymentDate).toLocaleDateString('en-IN', {
                           day: '2-digit',
                           month: 'long',
@@ -129,7 +97,7 @@ export default function PaymentSuccessPage() {
                 </div>
               </div>
             </div>
-            
+
             <div className="mb-6 p-4 border border-blue-100 rounded-lg bg-blue-50">
               <div className="flex items-start">
                 <div className="shrink-0 mt-1">
@@ -140,13 +108,13 @@ export default function PaymentSuccessPage() {
                 <div className="ml-3">
                   <h3 className="text-sm font-medium text-blue-800">Receipt Information</h3>
                   <p className="text-sm text-blue-700 mt-1">
-                    A copy of your receipt has been emailed to your registered email address. 
+                    A copy of your receipt has been emailed to your registered email address.
                     You can also download a copy of the receipt using the button below.
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mt-8">
               <a
                 href={`/api/pay-fees/receipt/${paymentDetails.id}`}
@@ -155,7 +123,8 @@ export default function PaymentSuccessPage() {
               >
                 Download Receipt
               </a>
-              <Link href="/"
+              <Link
+                href="/"
                 className="text-blue-600 border border-blue-200 bg-blue-50 text-center px-6 py-3 rounded-lg font-medium hover:bg-blue-100 transition-colors"
               >
                 Back to Home
