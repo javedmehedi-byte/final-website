@@ -111,3 +111,20 @@ export async function GET() {
     message: 'Razorpay webhook endpoint is up. Use POST with a valid X-Razorpay-Signature.'
   })
 }
+
+// Respond to HEAD requests (used by some health checks)
+export async function HEAD() {
+  return new NextResponse(null, { status: 200, headers: { 'Accept': 'application/json' } })
+}
+
+// Respond to OPTIONS for preflight or method discovery
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Allow': 'GET, POST, HEAD, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, HEAD, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, X-Razorpay-Signature'
+    }
+  })
+}
