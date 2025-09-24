@@ -5,6 +5,7 @@ import { generatePaymentReceipt } from '../../../../lib/receipt'
 import { sendPaymentReceipt } from '../../../../lib/mailer'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 function verifyWebhookSignature(rawBody: string, signature: string, secret: string): boolean {
   const expected = crypto
@@ -101,4 +102,12 @@ export async function POST(request: NextRequest) {
 
   // Always acknowledge receipt to Razorpay
   return NextResponse.json({ ok: true })
+}
+
+// Optional convenience handler so the endpoint responds in a browser
+export async function GET() {
+  return NextResponse.json({
+    ok: true,
+    message: 'Razorpay webhook endpoint is up. Use POST with a valid X-Razorpay-Signature.'
+  })
 }
