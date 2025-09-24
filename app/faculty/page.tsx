@@ -176,7 +176,7 @@ export default function FacultyPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-600">Teacher Students Ratio</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">1:2.8</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">1:15</p>
               </div>
             </div>
           </div>
