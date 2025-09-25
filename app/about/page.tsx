@@ -11,7 +11,7 @@ export default function About() {
             About <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">IHRC Paramedical College</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed">
-            IHRC Paramedical College, located at Lalambung RIMS Road, Imphal West, Manipur, is dedicated to building a new generation of skilled and compassionate healthcare professionals. Established with the motto “Skilling Future Caregivers,” the college focuses on academic excellence, practical training, and ethical values to strengthen healthcare delivery in Manipur, the Northeast, and beyond. By fostering excellence, integrity, compassion, and innovation, IHRC Paramedical College strives to build the next generation of allied health professionals who will play a key role in improving healthcare delivery.
+            IHRC Paramedical College, located at Lalambung RIMS Road, Imphal West, Manipur, is run and managed by Imphal Hospital and Research Centre and is dedicated to building a new generation of skilled and compassionate healthcare professionals. Established with the motto “Skilling Future Caregivers,” the college focuses on academic excellence, practical training, and ethical values to strengthen healthcare delivery in Manipur, the Northeast, and beyond. By fostering excellence, integrity, compassion, and innovation, IHRC Paramedical College strives to build the next generation of allied health professionals who will play a key role in improving healthcare delivery.
           </p>
         </div>
       </section>
