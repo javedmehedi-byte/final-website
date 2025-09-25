@@ -21,7 +21,7 @@ export const news: NewsItem[] = [
   {
     id: 'admissions-2025-open',
     title: 'Admissions 2025: Applications Open',
-    date: '2025-09-01',
+    date: '2025-09-22',
     category: 'Announcement',
     summary:
       'Online applications are now open for B.Sc. and Diploma programs in MLT, OT Technology, and Dialysis Technology. Review eligibility and apply online.',

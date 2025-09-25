@@ -2,6 +2,14 @@ import Layout from '@/components/Layout'
 import { news, events } from '@/data/news-events'
 
 export default function NewsEventsPage() {
+  const formatDDMMYY = (dateStr: string) => {
+    const d = new Date(dateStr)
+    const dd = String(d.getDate()).padStart(2, '0')
+    const mm = String(d.getMonth() + 1).padStart(2, '0')
+    const yy = String(d.getFullYear()).slice(-2)
+    return `${dd}-${mm}-${yy}`
+  }
+
   return (
     <Layout>
       <section className="py-12 bg-gradient-to-b from-blue-50 via-white to-white">
@@ -26,7 +34,7 @@ export default function NewsEventsPage() {
                       {n.category}
                     </span>
                     <span>•</span>
-                    <time dateTime={n.date}>{new Date(n.date).toLocaleDateString()}</time>
+                    <time dateTime={n.date}>{formatDDMMYY(n.date)}</time>
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-700">{n.title}</h3>
                   <p className="text-sm text-gray-600">{n.summary}</p>
@@ -50,7 +58,7 @@ export default function NewsEventsPage() {
                     className="rounded-2xl p-5 bg-white border border-gray-100 shadow-sm"
                   >
                     <div className="text-xs text-gray-500 mb-2">
-                      <time dateTime={e.date}>{new Date(e.date).toLocaleDateString()}</time>
+                      <time dateTime={e.date}>{formatDDMMYY(e.date)}</time>
                       {e.time ? <span className="ml-2">• {e.time}</span> : null}
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-1">{e.title}</h3>
