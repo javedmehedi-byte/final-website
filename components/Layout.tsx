@@ -57,6 +57,28 @@ export default function Layout({ children }: { children: ReactNode }) {
                   <Link href="/contact" className="text-blue-400 hover:text-blue-300">Contact Us</Link>
                 </li>
               </ul>
+              <div className="mt-6">
+                <h4 className="font-medium text-white mb-2">Our Location</h4>
+                <div className="rounded-lg overflow-hidden ring-1 ring-gray-800">
+                  <iframe
+                    title="IHRC Paramedical College Location"
+                    src="https://www.google.com/maps?q=Lalambung%20RIMS%20Road%2C%20Imphal%20West%2C%20Manipur%20795001&output=embed"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-40"
+                  />
+                </div>
+                <div className="mt-2">
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Lalambung+RIMS+Road%2C+Imphal+West%2C+Manipur+795001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 text-sm"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
