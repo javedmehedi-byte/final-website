@@ -6,7 +6,7 @@ export default function Hero() {
           Build Your Future in <span className="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">Healthcare</span>
         </h1>
         <p className="text-xl md:text-2xl mb-4 text-gray-700 max-w-4xl mx-auto leading-relaxed">
-          Industry‑aligned programs, hands‑on training, and expert mentorship at IHRC Paramedical College.
+          Industry‑aligned programs, hands‑on training, and expert mentorship at Imphal Hospital and Research Centre Paramedical College.
         </p>
         <p className="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
           Explore our programs and secure your seat for the upcoming academic session.
