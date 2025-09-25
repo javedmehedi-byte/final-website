@@ -62,15 +62,19 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <div className="rounded-lg overflow-hidden ring-1 ring-gray-800">
                   <iframe
                     title="IHRC Paramedical College Location"
-                    src="https://www.google.com/maps?q=Lalambung%20RIMS%20Road%2C%20Imphal%20West%2C%20Manipur%20795001&output=embed"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57944.17544619535!2d93.88792896065175!3d24.812193857764864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374927b6623df033%3A0xc1dfc45152ec92a6!2sImphal%20Hospital%20%26%20Research%20Centre!5e0!3m2!1sen!2sin!4v1758816213794!5m2!1sen!2sin"
+                    width="600"
+                    height="450"
+                    style={{ border: 0 }}
                     loading="lazy"
+                    allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"
                     className="w-full h-40"
                   />
                 </div>
                 <div className="mt-2">
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Lalambung+RIMS+Road%2C+Imphal+West%2C+Manipur+795001"
+                    href="https://www.google.com/maps/place/Imphal+Hospital+%26+Research+Centre/@24.8121939,93.887929,13z/data=!4m6!3m5!1s0x374927b6623df033:0xc1dfc45152ec92a6!8m2!3d24.8121939!4d93.887929!16s%2Fg%2F11c1lg_w8p?entry=ttu"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-400 hover:text-blue-300 text-sm"
