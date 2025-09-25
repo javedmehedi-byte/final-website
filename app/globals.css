@@ -46,3 +46,22 @@ body {
 .btn-secondary {
   @apply border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors;
 }
+
+/* Announcement ticker */
+.announcement-track {
+  position: relative;
+  display: inline-flex;
+  min-width: 200%;
+  animation: ticker-scroll 25s linear infinite;
+}
+
+.announcement-item {
+  display: inline-block;
+  padding-right: 4rem;
+  white-space: nowrap;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
