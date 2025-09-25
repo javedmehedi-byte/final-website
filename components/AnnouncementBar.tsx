@@ -3,7 +3,6 @@ import { SITE_LOGO_ALT } from '@/lib/site-config'
 export default function AnnouncementBar() {
   const messages = [
     'Admissions for 2025–26 are open. Apply now.',
-    'Pay fees online securely via Razorpay.',
     'For queries: +91 7005176498 · admin@ihrcparamedicalcollege.com',
   ]
 
