@@ -17,7 +17,7 @@ const programs: Program[] = [
   {
     slug: 'bsc-mlt',
     name: 'B.Sc. Medical Lab Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: "Bachelor's",
     duration: '3 Years',
@@ -45,7 +45,7 @@ const programs: Program[] = [
   {
     slug: 'diploma-mlt',
     name: 'Diploma in Medical Lab Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: 'Diploma',
     duration: '2 Years',
@@ -69,7 +69,7 @@ const programs: Program[] = [
   {
     slug: 'bsc-ott',
     name: 'B.Sc. Operation Theatre Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: "Bachelor's",
     duration: '3 Years',
@@ -93,7 +93,7 @@ const programs: Program[] = [
   {
     slug: 'diploma-ott',
     name: 'Diploma in Operation Theatre Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: 'Diploma',
     duration: '2 Years',
@@ -112,7 +112,7 @@ const programs: Program[] = [
   {
     slug: 'bsc-dialysis',
     name: 'B.Sc. Dialysis Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: "Bachelor's",
     duration: '3 Years',
@@ -132,7 +132,7 @@ const programs: Program[] = [
   {
     slug: 'diploma-dialysis',
     name: 'Diploma in Dialysis Technology',
-  fee: 'Rs 60,000/sem',
+  fee: 'Rs 55000/Sem',
     seats: 15,
     level: 'Diploma',
     duration: '2 Years',
