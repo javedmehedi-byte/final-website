@@ -23,7 +23,7 @@ export default function Hero() {
             className="inline-block bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition"
             href="/admissions"
           >
-            Admissions 2025
+            Admissions 2026
           </a>
         </div>
       </div>
